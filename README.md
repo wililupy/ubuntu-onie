@@ -25,12 +25,7 @@ and type the following:
 build-host:~$ cd /ubuntu-iso
 build-host:~/ubuntu-iso$ ./cook-bits.sh
 Downloading Ubuntu Bionic mini.iso ...
-Using URL: http://ftp.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/mini.iso
---2015-10-09 10:15:03--  http://ftp.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/mini.iso
-Resolving ftp.ubuntu.com (ftp.ubuntu.com)... 130.89.148.12, 2001:610:1908:b000::148:12
-Connecting to ftp.ubuntu.com (ftp.ubuntu.com)|130.89.148.12|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 29360128 (28M) [application/x-iso9660-image]
+...
 Saving to: `./input/ubuntu-bionic-amd64-mini.iso'
 
 100%[==================================================================================================>] 29,360,128  3.11M/s   in 8.6s    
@@ -50,41 +45,15 @@ Media summary: 1 session, 11098 data blocks, 21.7m data, 1210g free
 Volume id    : 'ISOIMAGE'
 Copying of file objects from ISO image to disk filesystem is: Enabled
 xorriso : UPDATE : 280 files restored ( 21495k) in 1 seconds = 15.9xD
-Extracted from ISO image: file '/'='/work/monster-15/curt/trees/onie-cbrune/contrib/ubuntu-iso/work/extract'
 ..... Done.
 ```
 
 The resulting ONIE installer file is available in the `output` directory:
 
 ```
-build-host:~/onie/contrib/ubuntu-iso$ ls -l output/
+build-host:~/ubuntu-iso$ ls -l output/
 total 17812
--rw-r--r-- 1 curt Development 18238940 Oct  9 10:15 ubuntu-bionic-amd64-mini-ONIE.bin
-```
-
-## Running the Ubuntu installer on a ONIE x86_64 virtual machine
-
-The next step is to create the `kvm_x86_64` ONIE image and a virtual
-machine in which to run it.  This is covered here:
-
-https://github.com/opencomputeproject/onie/blob/master/machine/kvm_x86_64/INSTALL
-
-Follow the instructions in the "Creating a New x86_64 Virtual Machine
-Using the ISO Image" section.  The only change to make is to create a
-large virtual disk image.  Create an 8G qcow2 image, like this:
-
-```
-build-host:~$ qemu-img create -f qcow2 onie-x86-demo.img 8G
-```
-
-This example VM uses local qemu networking.  From the guest VM you
-will be able to access services on the host using IP address 10.0.2.2.
-
-Once you have the ONIE VM running, boot the system into ONIE rescue
-mode.  You should now be at the ONIE prompt:
-
-```
-ONIE:/ # 
+-rw-r--r-- 1 user user 18238940 Oct  9 10:15 ubuntu-bionic-amd64-mini-ONIE.bin
 ```
 
 ## Preparing the HTTP image server
@@ -97,8 +66,8 @@ Put the `ubuntu-bionic-amd64-mini-ONIE.bin` file and
 `ubuntu-preseed.txt` file into the document root of the HTTP server:
 
 ```
-build-host:~/onie/contrib/ubuntu-iso$ sudo mkdir -p /var/www/html/ubuntu-iso
-build-host:~/onie/contrib/ubuntu-iso$ sudo cp output/ubuntu-bionic-amd64-mini-ONIE.bin debian-preseed.txt /var/www/html/debian-iso
+build-host:~/ubuntu-iso$ sudo mkdir -p /var/www/html/ubuntu-iso
+build-host:~/ubuntu-iso$ sudo cp output/ubuntu-bionic-amd64-mini-ONIE.bin ubuntu-preseed.cfg /var/www/html/debian-iso
 ```
 
 ## Installing the Ubuntu installer from ONIE
