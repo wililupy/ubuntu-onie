@@ -4,7 +4,6 @@ This example demonstrates how to create an ONIE compatible installer
 image from a Ubuntu Bionic .ISO file.  This README covers:
 
 * Building the  ONIE installer
-* Running the Ubuntu installer on a ONIE x86_64 virtual machine
 * Using a Ubuntu preseed.cfg file to automate installation in an ONIE environment
 
 ## Building the Ubuntu ONIE installer
@@ -71,7 +70,7 @@ build-host:~/ubuntu-iso$ sudo cp output/ubuntu-bionic-amd64-mini-ONIE.bin ubuntu
 
 ## Installing the Ubuntu installer from ONIE
 
-Back on the ONIE VM.  First double check that the network is working
+Back in ONIE.  First double check that the network is working
 correctly:
 
 ```
