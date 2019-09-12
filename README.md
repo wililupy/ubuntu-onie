@@ -66,8 +66,7 @@ Put the `ubuntu-bionic-amd64-mini-ONIE.bin` file and
 `ubuntu-preseed.txt` file into the document root of the HTTP server:
 
 ```
-build-host:~/ubuntu-iso$ sudo mkdir -p /var/www/html/ubuntu-iso
-build-host:~/ubuntu-iso$ sudo cp output/ubuntu-bionic-amd64-mini-ONIE.bin ubuntu-preseed.cfg /var/www/html/debian-iso
+build-host:~/ubuntu-iso$ sudo cp output/ubuntu-bionic-amd64-mini-ONIE.bin ubuntu-preseed.cfg /var/www/html/
 ```
 
 ## Installing the Ubuntu installer from ONIE
@@ -88,7 +87,7 @@ PING 10.0.2.2 (10.0.2.2): 56 data bytes
 Next verify the HTTP server is accessible:
 
 ```
-ONIE:/ # wget http://10.0.2.2/ubuntu-iso/ubuntu-preseed.txt
+ONIE:/ # wget http://10.0.2.2/ubuntu-preseed.txt
 ```
 
 If either of those is not working figure out why before proceeding.
@@ -96,12 +95,12 @@ If either of those is not working figure out why before proceeding.
 Now proceed with installing the ONIE compatible Ubuntu installer:
 
 ```
-ONIE:/ # onie-nos-install http://10.0.2.2/ubuntu-iso/ubuntu-bionic-amd64-mini-ONIE.bin
+ONIE:/ # onie-nos-install http://10.0.2.2/ubuntu-bionic-amd64-mini-ONIE.bin
 discover: Rescue mode detected. No discover stopped.
-Info: Fetching http://10.0.2.2/ubuntu-iso/ubuntu-bionic-amd64-mini-ONIE.bin ...
+Info: Fetching http://10.0.2.2/ubuntu-bionic-amd64-mini-ONIE.bin ...
 Connecting to 10.0.2.2 (10.0.2.2:80)
 installer            100% |*******************************| 17811k  0:00:00 ETA
-ONIE: Executing installer: http://10.0.2.2/ubuntu-iso/ubuntu-bionic-amd64-mini-ONIE.bin
+ONIE: Executing installer: http://10.0.2.2/ubuntu-bionic-amd64-mini-ONIE.bin
 Verifying image checksum ... OK.
 Preparing image archive ... OK.
 Loading new kernel ...
